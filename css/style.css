@@ -4,6 +4,7 @@ html {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    font-family: 'Lato', sans-serif;
 }
 #page-heading {
     background-color: #9fb1be;
@@ -13,58 +14,10 @@ html {
     margin-right: -8px;
     margin-top: -8px;
 }
-.button {
-    /*basic styles*/
-    width: 250px;
-    height: 50px;
-    color: white;
-    background-color: #99CF00;
-    text-align: center;
-    font-size: 30px;
-    line-height: 50px;
-    /*gradient styles*/
-    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#99CF00), to(#6DB700));
-    background: -moz-linear-gradient(19% 75% 90deg, #6DB700, #99CF00);
-    /*border styles*/
-    border-left: solid 1px #c3f83a;
-    border-top: solid 1px #c3f83a;
-    border-right: solid 1px #82a528;
-    border-bottom: solid 1px #58701b;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-    -webkit-gradient(linear, 0% 0%, 0% 100%, from(#99CF00), to(#6DB700))
-}
-.button h3 {
-    font-size: 20px;
-    line-height: 35px;
-    font-family: helvetica, sans-serif;
-}
-.button p {
-    font-size: 12px;
-    line-height: 4px;
-    font-family: helvetica, sans-serif;
-}
-a {
-    text-decoration: none;
-    color: fff;
-}
-.button:hover {
-    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#6DB700), to(#99CF00));
-    background: -moz-linear-gradient(19% 75% 90deg, #99CF00, #6DB700);
-}
-@font-face {
-    font-family: 'League Gothic';
-    src: url('leaguegothic-regular-webfont.eot');
-    src: url('leaguegothic-regular-webfont.eot?#iefix') format('embedded-opentype'), url('leaguegothic-regular-webfont.woff') format('woff'), url('leaguegothic-regular-webfont.ttf') format('truetype'), url('leaguegothic-regular-webfont.svg#league_gothicregular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
 .heading-text {
-    font-family: "League Gothic", serif;
     color: #000000;
     text-align: center;
-    text-shadow: 5px 5px 2.5px #888888;
+    text-shadow: 5px 5px 2px #888888;
 }
 #page-footer {
     position: absolute;
@@ -76,7 +29,11 @@ a {
 }
 .footer-text {
     color: #000000;
-    text-shadow: 5px 5px 2.5px #888888;
+    text-shadow: 5px 5px 2px #888888;
     text-align: center;
-    font-family: "League Gothic", serif;
+}
+.newgame-button{
+    float: right;
+    margin-top: -45px;
+    margin-right: 15px;
 }
