@@ -1,34 +1,53 @@
 $(document).ready(function() {
-    var problem = [{
-        question: "Question #1: Who is the only person to win an Oscar for Best Director for the only movie he ever directed?",
-        answerChoices: ["Bob Fosse", "Frank Borzage", "Leo McCarey", "Jerome Robbins"],
-        questionNumber: 0,
-        correctAnswer: 3
+    var problem = [
+        {
+            question: "Who is the only person to win an Oscar for Best Director for the only movie he ever directed?",
+            answerChoices: ["Bob Fosse", "Frank Borzage", "Leo McCarey", "Jerome Robbins"],
+            correctAnswer: 3
         },
         {
-        question: "Question #2: Which two actors directed themselves in movies and won Oscars for Best Actor?",
-        answerChoices: ["Al Pacino and Timothy Hutton", "Jack Nicholson and Kevin Spacey", "Laurence Olivier and Roberto Benigni", "Tom Hanks and Paul Newman"],
-        questionNumber: 1,
-        correctAnswer: 2
+            question: "Which two actors directed themselves in movies and won Oscars for Best Actor?",
+            answerChoices: [
+                "Al Pacino and Timothy Hutton",
+                "Jack Nicholson and Kevin Spacey",
+                "Laurence Olivier and Roberto Benigni",
+                "Tom Hanks and Paul Newman"
+            ],
+            correctAnswer: 2
         },
         {
-        question: "Question #3: Who is the most nominated actor in Academy history?",
-        answerChoices: ["Jack Nicholson", "Laurence Olivier", "Spencer Tracy", "Paul Newman"],
-        questionNumber: 2,
-        correctAnswer: 0
+            question: "Who is the most nominated actor in Academy history?",
+            answerChoices: [
+                "Jack Nicholson",
+                "Laurence Olivier",
+                "SSpencer Tracy",
+                "Paul Newman"
+            ],
+            correctAnswer: 0
         },
         {
-        question: "Question #4: What was most notable about the 96-minute long movie Russian Ark (2002) from director Aleksandr Sokurov?",
-        answerChoices: ["It had no cuts.", "It was shot in 3D.", "The opening scene had an 18-minute tracking shot.", "There was no talking for the first 25 minutes."],
-        questionNumber: 3,
-        correctAnswer: 0
+            question: "What was most notable about the 96-minute long movie Russian Ark (2002) from director Aleksandr Sokurov?",
+            answerChoices: [
+                "It had no cuts.",
+                "It was shot in 3D.",
+                "The opening scene had an 18-minute tracking shot.",
+                "There was no talking for the first 25 minutes."
+            ],
+            correctAnswer: 0
         },
         {
-        question: "Question #5: What was the name of the American actor who starred in Sergio Leone's low-budget spaghetti westerns in the 1960s?",
-        answerChoices: ["Clint Eastwood", "Gary Cooper", "John Wayne", "Robert Redford"],
-        questionNumber: 4,
-        correctAnswer: 0
-        }]
+            question: "What was the name of the American actor who starred in Sergio Leone's low-budget spaghetti westerns in the 1960s?",
+            answerChoices: [
+                "Clint Eastwood",
+                "Gary Cooper",
+                "John Wayne",
+                "Robert Redford"
+            ],
+            correctAnswer: 0
+        },
+    ]
+
+    var numberOfQuestions = problem.length;
 
     var amountCorrect = 0;
     var onQuestion = 0;
@@ -45,57 +64,26 @@ $(document).ready(function() {
 
     });
 
-    $("#question-container").on("click", "#reset", function () {
-        amountCorrect = 0;
-        onQuestion = 0;
-        $(".progress-bar").css("width", "0%");
-        $(".lead").text("Progress 0%")
-        var newQuestion = '<span class="question">'+problem[onQuestion].question+'</span><br><div id="answer-container"><input type="radio" name="option" class="option" value="0"><span class="answer">'+problem[onQuestion].answerChoices[0]+'</span><br><input type="radio" name="option" class="option" value="1"><span class="answer">'+problem[onQuestion].answerChoices[1]+'</span><br><input type="radio" name="option" class="option" value="2"><span class="answer">'+problem[onQuestion].answerChoices[2]+'</span><br><input type="radio" name="option" class="option" value="3"><span class="answer">'+problem[onQuestion].answerChoices[3]+'</span><br></div><div class="panel-footer" id="button-container"><input type="button" id="submit" value="Submit Answer"><span id="hint"></span><input type="button" id="reset" value="Try Again!"></div>';
-        $("#question-container").html(newQuestion);
-    });
-    $("ul.nav").on("click", "#reset", function () {
-        amountCorrect = 0;
-        onQuestion = 0;
-        $(".progress-bar").css("width", "0%");
-        $(".lead").text("Progress 0%")
-        var newQuestion = '<span class="question">'+problem[onQuestion].question+'</span><br><div id="answer-container"><input type="radio" name="option" class="option" value="0"><span class="answer">'+problem[onQuestion].answerChoices[0]+'</span><br><input type="radio" name="option" class="option" value="1"><span class="answer">'+problem[onQuestion].answerChoices[1]+'</span><br><input type="radio" name="option" class="option" value="2"><span class="answer">'+problem[onQuestion].answerChoices[2]+'</span><br><input type="radio" name="option" class="option" value="3"><span class="answer">'+problem[onQuestion].answerChoices[3]+'</span><br></div><div class="panel-footer" id="button-container"><input type="button" id="submit" value="Submit Answer"><span id="hint"></span><input type="button" id="reset" value="Try Again!"></div>';
-        $("#question-container").html(newQuestion);
-    });
+    $("#question-container").on("click", "#reset", resetQuiz);
+    $("ul.nav").on("click", "#reset", resetQuiz);
 
     function updatePercentageComplete() {
         var answer = $("input[type='radio']:checked").val();
         if (answer == problem[onQuestion].correctAnswer) {
             amountCorrect++;
         }
-        if (amountCorrect == 1) {
-            $(".progress-bar").css("width", "20%")
-            $(".lead").text("Progress 20%")
-        }
-        else if (amountCorrect == 2) {
-            $(".progress-bar").css("width", "40%")
-            $(".lead").text("Progress 40%")
-        }
-        else if (amountCorrect == 3) {
-            $(".progress-bar").css("width", "60%")
-            $(".lead").text("Progress 60%")
-        }
-        else if (amountCorrect == 4) {
-            $(".progress-bar").css("width", "80%")
-            $(".lead").text("Progress 80%")
-        }
-        else if (amountCorrect == 5) {
-            $(".progress-bar").css("width", "100%")
-            $(".lead").text("Progress 100%")
-        }
+
+        var percentComplete = (amountCorrect * (100/numberOfQuestions));
+        $(".progress-bar").css("width",percentComplete + "%");
+        $(".lead").text("Progress " + percentComplete.toFixed(0) + "%");
     }
 
     function nextQuestion() {
-        if (onQuestion < 5) {
+        if (onQuestion < numberOfQuestions) {
             $(".question").remove();
             $("#answer-container input").remove();
             $("#answer-container span").remove();
-            var newQuestion = '<span class="question">'+problem[onQuestion].question+'</span><br><div id="answer-container"><input type="radio" name="option" class="option" value="0"><span class="answer">'+problem[onQuestion].answerChoices[0]+'</span><br><input type="radio" name="option" class="option" value="1"><span class="answer">'+problem[onQuestion].answerChoices[1]+'</span><br><input type="radio" name="option" class="option" value="2"><span class="answer">'+problem[onQuestion].answerChoices[2]+'</span><br><input type="radio" name="option" class="option" value="3"><span class="answer">'+problem[onQuestion].answerChoices[3]+'</span><br></div><div class="panel-footer" id="button-container"><input type="button" id="submit" value="Submit Answer"><span id="hint"></span><input type="button" id="reset" value="Try Again!"></div>';
-            $("#question-container").html(newQuestion);
+            $("#question-container").html(generateQuestionHTML(onQuestion));
         }
         else {
             $(".question").remove();
@@ -104,13 +92,69 @@ $(document).ready(function() {
             $("#submit").css("display", "none");
             $("#retry").css("display", "inline");
             if (amountCorrect == 1) {
-                var finalScore = '<span id="final">Congratulations on finishing the quiz!  You correctly answered '+amountCorrect+' question.'
+                var finalScore = '<span id="final">Congratulations on finishing the quiz!  You correctly answered '+amountCorrect+' question.</span>'
                 $("#answer-container").html(finalScore);
             }
             else {
-                var finalScore = '<span id="final">Congratulations on finishing the quiz!  You correctly answered '+amountCorrect+' problem.'
+                var finalScore = '<span id="final">Congratulations on finishing the quiz!  You correctly answered '+amountCorrect+' problem.</span>'
                 $("#answer-container").html(finalScore);
             }
         }
     }
+
+    function resetQuiz() {
+        amountCorrect = 0;
+        onQuestion = 0;
+        $(".progress-bar").css("width", "0%");
+        $(".lead").text("Progress 0%")
+        $("#question-container").html(generateQuestionHTML(onQuestion));
+    }
+
+    function getQuestionString(questionNumber){
+       return "Question #" + (questionNumber + 1) +": " + problem[questionNumber].question
+    }
+
+    function generateQuestionHTML(questionNumber) {
+        return  '<span class="question">' +
+                    getQuestionString(questionNumber) +
+                '</span>' +
+                '<br>' +
+                '<div id="answer-container">' +
+                    '<input type="radio" name="option" class="option" value="0">' +
+                        '<span class="answer">' +
+                            problem[questionNumber].answerChoices[0] +
+                        '</span>' +
+                    '</input>' +
+                    '<br>'+
+                    '<input type="radio" name="option" class="option" value="1">' +
+                        '<span class="answer">' +
+                            problem[questionNumber].answerChoices[1]+
+                        '</span>' +
+                    '</input>' +
+                    '<br>' +
+                    '<input type="radio" name="option" class="option" value="2">' +
+                        '<span class="answer">'+
+                            problem[questionNumber].answerChoices[2]+
+                        '</span>' +
+                    '</input>' +
+                    '<br>' +
+                    '<input type="radio" name="option" class="option" value="3">' +
+                        '<span class="answer">' +
+                            problem[questionNumber].answerChoices[3] +
+                        '</span>' +
+                    '</input>' +
+                    '<br>' +
+                '</div>' +
+                '<div class="panel-footer" id="button-container">' +
+                    '<input type="button" id="submit" value="Submit Answer">' +
+                        '<span id="hint"></span>' +
+                    '</input>' +
+                    '<input type="button" id="reset" value="Try Again!" />' +
+                '</div>';
+
+    }
+
+
+
+    resetQuiz();
 });
